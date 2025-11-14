@@ -1,22 +1,17 @@
-// server.js
+// Ejemplo de configuración de ruta en Express
 const express = require("express");
 const app = express();
+const PORT = 3000; // O el puerto que estés usando
 
-// Usar el puerto proporcionado por Heroku/Vercel o el 3000 por defecto (Ejercicio 11)
-const PORT = process.env.PORT || 3000;
-
-// Middleware básico para manejar las rutas de la API (simulación local)
-// Esto es para probar localmente, en Vercel se usa la estructura 'api/...'
-app.get("/api/v1/hola", (req, res) => {
-  // Simulamos la respuesta de la función serverless hola.js
-  res.status(200).json({
-    mensaje: "¡Bienvenido a la versión 1 de nuestra API!",
-  });
+// Define la ruta principal (root)
+app.get("/", (req, res) => {
+  // Puedes enviar un mensaje de texto, un HTML o un JSON
+  res.send("¡Bienvenido a mi API aventura! El servidor está funcionando.");
+  // o
+  // res.json({ message: 'API funcionando correctamente' });
 });
 
+// Inicia el servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor Express escuchando en http://localhost:${PORT}`);
-  console.log(
-    "Nota: En Vercel, las rutas de la API son manejadas por la estructura de directorios."
-  );
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
