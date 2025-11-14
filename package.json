@@ -1,0 +1,16 @@
+{
+  "name": "mi-api-aventura",
+  "version": "1.0.0",
+  "description": "Mi primera API serverless desplegada en Vercel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Luis Pichardo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
