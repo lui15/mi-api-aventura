@@ -1,17 +1,23 @@
-// Ejemplo de configuración de ruta en Express
+// server.js (Modificado para Swagger)
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const path = require("path");
+
 const app = express();
-const PORT = 3000; // O el puerto que estés usando
+const PORT = process.env.PORT || 3000;
 
-// Define la ruta principal (root)
-app.get("/", (req, res) => {
-  // Puedes enviar un mensaje de texto, un HTML o un JSON
-  res.send("¡Bienvenido a mi API aventura! El servidor está funcionando.");
-  // o
-  // res.json({ message: 'API funcionando correctamente' });
-});
+// Cargar el archivo de especificación de Swagger
+const swaggerDocument = YAML.load(path.join(__dirname, "swagger.yaml"));
 
-// Inicia el servidor
+// Usar Swagger-UI en la ruta /api-docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// ... (resto del código de Express para probar rutas locales como app.get('/api/v1/hola', ...))
+
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`🚀 Servidor Express escuchando en http://localhost:${PORT}`);
+  console.log(
+    `📖 Documentación de la API en http://localhost:${PORT}/api-docs`
+  );
 });
